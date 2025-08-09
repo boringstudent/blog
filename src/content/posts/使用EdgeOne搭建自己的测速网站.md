@@ -68,3 +68,5 @@ else:
 实测下来可以跑满我家的家宽
 
 还是非常不错的nice！
+
+测速链接 [https://fvdfgf-g4lpkvob.edgeone.run/](https://fvdfgf-g4lpkvob.edgeone.run/)

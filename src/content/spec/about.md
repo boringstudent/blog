@@ -1,2 +1,4 @@
 # About
-this is fengxiangQAQ's blog
+本人是一个高中牲
+
+好无聊！好无聊！好无聊！啊~

@@ -28,11 +28,11 @@ lang: ''
 
 登录完成后
 
-![img.png](img.png)
+![img.png](eo-cs/img.png)
 
 点击"创建项目" 选择直接上传
 
-![img_1.png](img_1.png)
+![img_1.png](eo-cs/img_1.png)
 
 1. 项目名称随意
 
@@ -53,7 +53,7 @@ else:
 
 部署完成后点击项目设置
 
-![img_2.png](img_2.png)
+![img_2.png](eo-cs/img_2.png)
 
 在域名管理这一栏中eo会默认分配一个域名供我们使用
 
@@ -61,10 +61,10 @@ else:
 
 ## 测试咯！
 在浏览器打开绑定的域名
-![img_3.png](img_3.png)
+![img_3.png](eo-cs/img_3.png)
 点击开始测试即可
 
-![img_4.png](img_4.png)
+![img_4.png](eo-cs/img_4.png)
 实测下来可以跑满我家的家宽
 
 还是非常不错的nice！

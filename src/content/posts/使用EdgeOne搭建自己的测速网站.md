@@ -22,7 +22,7 @@ lang: ''
 
 ## 部署测速网页到eo page
 
-[下载代码文件](./speedtest.7z)
+[下载代码文件](https://cloud.chmlfrp.com/speedtest.7z)
 
 
 然后在浏览器打开 [https://console.cloud.tencent.com/edgeone/pages](https://console.cloud.tencent.com/edgeone/pages)

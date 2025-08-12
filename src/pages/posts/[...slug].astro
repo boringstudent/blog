@@ -108,6 +108,26 @@ const jsonLd = {
 
             {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
 
+            {/* 评论系统 */}
+            <div class="giscus-comments mb-6 onload-animation">
+                <script src="https://giscus.app/client.js"
+                        data-repo="boringstudent/comments"
+                        data-repo-id="R_kgDOPcyiSw"
+                        data-category="General"
+                        data-category-id="DIC_kwDOPcyiS84CuF77"
+                        data-mapping="pathname"
+                        data-strict="0"
+                        data-reactions-enabled="1"
+                        data-emit-metadata="1"
+                        data-input-position="top"
+                        data-theme="preferred_color_scheme"
+                        data-lang="zh-CN"
+                        data-loading="lazy"
+                        crossorigin="anonymous"
+                        async>
+                </script>
+            </div>
+
         </div>
     </div>
 

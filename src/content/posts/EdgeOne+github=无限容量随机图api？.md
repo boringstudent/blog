@@ -209,7 +209,7 @@ function getMultipleImageUrlsResponse(num, origin) {
 
 [http://xxx.chmlfrp.com/jpg](http://xxx.chmlfrp.com/jpg)
 
-[http://xxx.chmlfrp.com/json?num=3](http://xxx.chmlfrp.com/json?num=3
+[http://xxx.chmlfrp.com/json?num=3](http://xxx.chmlfrp.com/json?num=3)
 
 [http://xxx.chmlfrp.com/url?num=3](http://xxx.chmlfrp.com/url?num=3)
 

@@ -30,7 +30,7 @@ lang: ''
 
 `bug.chmlfrp.com` -> chmlfrp第三方对官方的bug收集
 
-[`chmlfrp-panel-mitbaoyu.edgeone.run`](https://chmlfrp-panel-mitbaoyu.edgeone.run/?eo_token=d9de71f661596ed99d07aaa646b5ec95&eo_time=1754745599) -> chmlfrp第三方对官方的bug收集
+[`chmlfrp-panel-mitbaoyu.edgeone.run`](https://chmlfrp-panel-mitbaoyu.edgeone.run/?eo_token=d9de71f661596ed99d07aaa646b5ec95&eo_time=1754745599) -> eo测速
 
 `docs.chmlfrp.com` -> chmlfrp第三方文档
 

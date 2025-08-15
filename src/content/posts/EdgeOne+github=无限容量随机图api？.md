@@ -40,7 +40,67 @@ lang: ''
 
 1. github创建一个仓库
 2. 创建一个名为`jpg`的文件夹和  `index.html` `num.json`
-3. 将所有图片名称从`1`开始命名，并且所有格式改为jpg（这一步的批量命名可以找ai给一个bat代码。而转换格式也是一样，但是这里推荐使用python。）
+3. 将所有图片名称从`1`开始命名，并且所有格式改为png（这一步的批量命名可以找ai给一个bat代码。而转换格式也是一样，但是这里推荐使用python。）
+
+py转换
+
+```python
+import os
+import random
+import string
+from PIL import Image
+
+def random_string(length=24):
+    """生成指定长度的随机字符串，包含数字和字母"""
+    characters = string.ascii_letters + string.digits
+    return ''.join(random.choice(characters) for _ in range(length))
+
+def convert_images_to_png(directory):
+    """将指定目录下的所有图片文件转换为PNG格式，并删除原文件"""
+    supported_formats = ('.jpg', '.jpeg', '.bmp', '.gif', '.tiff', '.webp')
+    for filename in os.listdir(directory):
+        if filename.lower().endswith(supported_formats):
+            input_path = os.path.join(directory, filename)
+            output_path = os.path.join(directory, os.path.splitext(filename)[0] + '.png')
+            try:
+                with Image.open(input_path) as img:
+                    img.save(output_path, 'PNG')
+                os.remove(input_path)  # 删除原文件
+                print(f"Converted and deleted: {filename}")
+            except Exception as e:
+                print(f"Failed to convert {filename}: {e}")
+
+def rename_files_with_random_names(directory):
+    """将指定目录下的所有PNG文件用随机数字字母重命名"""
+    for filename in os.listdir(directory):
+        if filename.lower().endswith('.png'):
+            random_name = random_string() + '.png'
+            old_path = os.path.join(directory, filename)
+            new_path = os.path.join(directory, random_name)
+            os.rename(old_path, new_path)
+            print(f"Renamed {filename} to {random_name}")
+
+def rename_files_sequentially(directory):
+    """将指定目录下的所有PNG文件按1.2.3到n的顺序重命名"""
+    png_files = [f for f in os.listdir(directory) if f.lower().endswith('.png')]
+    png_files.sort()  # 按文件名排序
+    for index, filename in enumerate(png_files, start=1):
+        new_name = f"{index}.png"
+        old_path = os.path.join(directory, filename)
+        new_path = os.path.join(directory, new_name)
+        os.rename(old_path, new_path)
+        print(f"Renamed {filename} to {new_name}")
+
+if __name__ == "__main__":
+    current_directory = os.getcwd()  # 获取当前目录
+    print("Converting images to PNG...")
+    convert_images_to_png(current_directory)
+    print("Renaming PNG files with random names...")
+    rename_files_with_random_names(current_directory)
+    print("Renaming PNG files sequentially...")
+    rename_files_sequentially(current_directory)
+    print("All operations completed.")
+```
 
 `index.html`写入以下内容
 
@@ -55,7 +115,7 @@ lang: ''
         // 生成1到x之间的随机数，这里818改为你命名到的图片名称数值
         const randomNumber = Math.floor(Math.random() * 818) + 1;
         // 跳转到随机图片
-        window.location.href = `/jpg/${randomNumber}.jpg`;
+        window.location.href = `/jpg/${randomNumber}.png`;
     </script>
 </body>
 </html>
@@ -148,7 +208,7 @@ async function getPhotoCount() {
 }
 
 function getOriginalImageUrl(num) {
-  return `http://xxxx.chmlfrp.com/jpg/${num}.jpg`;
+  return `http://xxxx.chmlfrp.com/jpg/${num}.png`;
 }
 
 async function getRandomImageResponse() {

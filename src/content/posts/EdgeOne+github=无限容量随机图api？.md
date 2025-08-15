@@ -39,7 +39,7 @@ lang: ''
 第一步：
 
 1. github创建一个仓库
-2. 创建一个名为`jpg`的文件夹和 `index.html`
+2. 创建一个名为`jpg`的文件夹和  `index.html` `num.json`
 3. 将所有图片名称从`1`开始命名，并且所有格式改为jpg（这一步的批量命名可以找ai给一个bat代码。而转换格式也是一样，但是这里推荐使用python。）
 
 `index.html`写入以下内容
@@ -60,6 +60,17 @@ lang: ''
 </body>
 </html>
 ```
+
+`num.json`写入以下内容
+
+```json
+{
+    "num":818
+}
+```
+
+其中`818`为照片数量
+
 
 示例仓库：[https://github.com/boringstudent/jpg](https://github.com/boringstudent/jpg)
 
@@ -101,14 +112,14 @@ addEventListener('fetch', event => {
 async function handleRequest(request) {
   const url = new URL(request.url);
   const path = url.pathname;
-  const origin = url.origin; // 获取当前请求的源（协议+域名）
+  const origin = url.origin;
 
   if (path === '/jpg') {
     return getRandomImageResponse();
   } else if (path === '/json') {
     const num = parseInt(url.searchParams.get('num'), 10);
     if (!isNaN(num) && num > 0) {
-      return getMultipleImageUrlsResponse(num, origin); // 传入当前源
+      return getMultipleImageUrlsResponse(num, origin);
     } else {
       return new Response(JSON.stringify({ error: "Invalid 'num' parameter. Please provide a positive integer." }), {
         status: 400,
@@ -130,12 +141,19 @@ async function handleRequest(request) {
   }
 }
 
+async function getPhotoCount() {
+  const response = await fetch('https://xxxx.chmlfrp.com/num.json');
+  const data = await response.json();
+  return data.num;
+}
+
 function getOriginalImageUrl(num) {
   return `http://xxxx.chmlfrp.com/jpg/${num}.jpg`;
 }
 
 async function getRandomImageResponse() {
-  const num = Math.floor(Math.random() * 818) + 1;
+  const totalImages = await getPhotoCount();
+  const num = Math.floor(Math.random() * totalImages) + 1;
   const imageUrl = getOriginalImageUrl(num);
   const response = await fetch(imageUrl);
   if (!response.ok) {
@@ -163,10 +181,11 @@ async function getSingleImageContentResponse(num) {
   }
 }
 
-function getMultipleImageUrlsResponse(num, origin) {
+async function getMultipleImageUrlsResponse(num, origin) {
+  const totalImages = await getPhotoCount();
   const urls = [];
   for (let i = 0; i < num; i++) {
-    const randomNum = Math.floor(Math.random() * 818) + 1;
+    const randomNum = Math.floor(Math.random() * totalImages) + 1;
     const fullUrl = `${origin}/url?num=${randomNum}`;
     urls.push(fullUrl);
   }
@@ -178,8 +197,6 @@ function getMultipleImageUrlsResponse(num, origin) {
 ```
 
 其中`http://xxxx.chmlfrp.com/jpg/${num}.jpg` 的`xxxx.chmlfrp.com`改为你绑定的域名
-
-其中`818`改为你的图片数量
 
 8. 点击部署，等待部署完成
 
@@ -196,6 +213,11 @@ function getMultipleImageUrlsResponse(num, origin) {
 同样的，把eo所给的	CNAME 添加到域名的解析中
 
 这样就完成了随机图api的搭建咯！
+
+# 更新手法！
+
+1. 按序添加照片至仓库的jpg文件夹
+2. 修改仓库的num.json文件中的数量
 
 # api文档
 
